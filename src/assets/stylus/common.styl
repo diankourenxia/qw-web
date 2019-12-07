@@ -1,0 +1,49 @@
+rounded($radius)
+  -webkit-border-radius $radius
+  -moz-border-radius $radius
+  border-radius $radius
+shadow($x, $y, $blur, $color)
+  -webkit-box-shadow $x $y $blur $color
+  -moz-box-shadow $x $y $blur $color
+  box-shadow $x $y $blur $color
+animation($name, $duration, $timingfunction)
+  animation $name $duration $timingfunction
+  -webkit-animation $name $duration $timingfunction
+  -moz-animation $name $duration $timingfunction
+  -o-animation $name $duration $timingfunction
+  -ms-animation $name $duration $timingfunction
+border-1px($direction)
+  if ($direction == bottom)
+    border-bottom 1px solid $color-border
+  if ($direction == top)
+    border-top 1px solid $color-border
+  if ($direction == vertical)
+    border-top 1px solid $color-border
+    border-bottom 1px solid $color-border
+  if ($direction == all)
+    border 1px solid $color-border
+long-text-ellipsis($line)
+  display -webkit-box
+  -webkit-line-clamp $line
+  -webkit-box-orient vertical
+  overflow hidden
+text-ellipsis($width)
+  max-width $width
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+flex-center($direction)
+  display flex
+  justify-content center
+  align-items center
+  flex-direction $direction
+flex-row
+  display flex
+  align-items center
+table-index
+  width 24px
+  height 24px
+  rounded(12px)
+  text-align center
+  color $color-text-primary
+  background rgba(217, 220, 226, 1)

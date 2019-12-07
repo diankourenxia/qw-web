@@ -1,0 +1,6 @@
+src/utils/mixin.js
+src/views/courier/operate/index.vue
+src/components/Drag.vue
+node_modules 
+dist/  
+test 
