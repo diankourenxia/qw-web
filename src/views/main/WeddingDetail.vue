@@ -4,12 +4,16 @@
       <!-- slides -->
       <swiper-slide v-for="(item, index) in weddingParam.picItems" :key="index">
         <transition
+          appear
+          v-for="items in item.picList"
           enter-active-class="animated zoomIn"
           leave-active-class="animated zoomOut"
+          :key="items"
+          :delay="1000 * index"
         >
           <el-image
-            :src="item.picList[0]"
-            alt=""
+            :class="{ 'img-delay': index === 1 }"
+            :src="items"
             v-if="index === $refs.mySwiper.swiper.activeIndex"
           />
         </transition>
@@ -98,4 +102,7 @@ export default class WeddingList extends Vue {
 <style lang="stylus">
 .swiper-container-autoheight, .swiper-container-autoheight .swiper-slide
   height 100%
+.img-delay
+  -webkit-animation-delay 0.5s
+  animation-delay 0.5s
 </style>
