@@ -8,8 +8,8 @@ Vue.use(Router);
 const router = new Router({
   mode: "history",
   routes: [
-    config,
     main,
+    config,
     {
       path: "*",
       component: () => import("@views/base/404.vue"),
