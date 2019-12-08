@@ -1,19 +1,32 @@
 <template>
   <div class="index-container">
-    <img src="@assets/images/base/case-logo.png" alt="" />
+    <el-image :src="userInfo.logo" alt="" v-if="loaded" fit="contain" />
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
+import * as configApi from "@api/config";
 
 @Component
-export default class HomeIndex extends Vue {}
+export default class HomeIndex extends Vue {
+  userInfo = {};
+  loaded = false;
+  created() {
+    this.getUserInfo();
+  }
+  getUserInfo() {
+    configApi.getUserInfo({}).then((res: any) => {
+      this.userInfo = res[0];
+      this.loaded = true;
+    });
+  }
+}
 </script>
 <style lang="stylus">
 .index-container
   position relative
   height 100vh
-  img
+  .el-image
     position absolute
     margin auto
     top 0
@@ -22,6 +35,9 @@ export default class HomeIndex extends Vue {}
     left 0
     max-width 100%
     padding-bottom 126px
+    text-align center
+    img
+      width 80%
 .el-drawer
   background #f1f1f1
 .el-drawer__header

@@ -1,17 +1,28 @@
 <template>
-  <div class="connect-container">
+  <div class="category-container" v-if="loaded">
     <el-row class="logo">
       <el-row style="height:20%;width:100%" class="logo">
-        <img src="@assets/images/base/case-logo.png" />
+        <el-image :src="userInfo.logo" />
       </el-row>
     </el-row>
-    <el-row class="title"
-      >婚礼案例 - {{ type === "prie" ? "按价格" : "按主题" }}</el-row
-    >
+    <el-row class="title" v-if="type === 'price'">婚礼案例 - 按价格</el-row>
+    <el-row class="title" v-else>婚礼案例 - 按主题 </el-row>
     <el-row class="content">
-      <el-row v-for="item in categoryList" :key="item" class="content-item">
-        <span> {{ item }}</span
-        ><i class="el-icon-caret-right"></i>
+      <el-row
+        v-for="item in categoryList"
+        :key="item"
+        class="content-item"
+        @click.native="gotoList"
+      >
+        <span v-if="type !== 'price'"> {{ item }}</span>
+        <span v-else>
+          {{
+            tranNumber(item.split("/")[0]) +
+              "到" +
+              tranNumber(item.split("/")[1])
+          }}</span
+        >
+        <i class="el-icon-caret-right"></i>
       </el-row>
     </el-row>
   </div>
@@ -28,6 +39,7 @@ export default class HomeIndex extends Vue {
   priceRange = {
     dynamicTags: ["0/5000"]
   };
+  loaded = false;
   categoryList = [];
   type = "price";
   created() {
@@ -39,14 +51,42 @@ export default class HomeIndex extends Vue {
   getUserInfo() {
     configApi.getUserInfo({}).then((res: any) => {
       this.userInfo = res[0];
+      this.loaded = true;
     });
   }
+  gotoList() {
+    this.$router.push("/main/home/weddingList");
+  }
+  tranNumber(num: number) {
+    let numStr = num.toString();
+    // 十万以内直接返回
+    if (numStr.length < 5) {
+      return numStr;
+    }
+    //大于8位数是亿
+    else if (numStr.length > 8) {
+      let decimal = numStr.substring(numStr.length - 8, numStr.length - 8);
+      return (
+        parseFloat(parseInt(Number(num) / 100000000 + "") + "." + decimal) +
+        "亿"
+      );
+    }
+    //大于6位数是十万 (以10W分割 10W以下全部显示)
+    else if (numStr.length >= 4) {
+      let decimal = numStr.substring(numStr.length - 3, numStr.length - 3);
+      return (
+        parseFloat(parseInt(Number(num) / 10000 + "") + "." + decimal) + "万"
+      );
+    }
+  }
+
   handleQueryCategory() {
     let param = {};
     configApi.getCategoryList(param).then((res: any) => {
       this.categoryParam = res[0];
       this.priceRange.dynamicTags = res[0].price.list;
       this.categoryTags.dynamicTags = res[0].style.list;
+      console.log(this.$route.params);
       if (this.$route.params.type === "price") {
         //@ts-ignore
         this.categoryList = this.priceRange.dynamicTags;
@@ -56,10 +96,21 @@ export default class HomeIndex extends Vue {
       }
     });
   }
+  @Watch("$route.path", { immediate: true })
+  onChangeRoute(val: any) {
+    this.type = this.$route.params.type;
+    if (this.$route.params.type === "price") {
+      //@ts-ignore
+      this.categoryList = this.priceRange.dynamicTags;
+    } else {
+      //@ts-ignore
+      this.categoryList = this.categoryTags.dynamicTags;
+    }
+  }
 }
 </script>
 <style lang="stylus">
-.connect-container
+.category-container
   .logo
     text-align center
   .content

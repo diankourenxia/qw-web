@@ -59,7 +59,7 @@ export default {
           }
         },
         {
-          path: "/main/home/category/:tyle",
+          path: "/main/home/category/:type",
           name: "mainHomeCategory",
           component: () => import("@views/main/category.vue"),
           meta: {

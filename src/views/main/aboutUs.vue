@@ -1,8 +1,8 @@
 <template>
-  <div class="connect-container">
+  <div class="connect-container" v-if="loaded">
     <el-row class="logo">
       <el-row style="height:20%;width:100%" class="logo">
-        <img src="@assets/images/base/case-logo.png" />
+        <el-image :src="userInfo.logo" />
       </el-row>
     </el-row>
     <el-row class="content">
@@ -18,12 +18,14 @@ import * as configApi from "@api/config";
 @Component
 export default class HomeIndex extends Vue {
   userInfo = {};
+  loaded = false;
   created() {
     this.getUserInfo();
   }
   getUserInfo() {
     configApi.getUserInfo({}).then((res: any) => {
       this.userInfo = res[0];
+      this.loaded = true;
     });
   }
 }

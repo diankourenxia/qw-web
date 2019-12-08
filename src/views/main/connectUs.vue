@@ -2,7 +2,7 @@
   <div class="connect-container">
     <el-row class="logo">
       <el-row style="height:20%;width:100%" class="logo">
-        <img src="@assets/images/base/case-logo.png" />
+        <el-image :src="userInfo.logo" />
       </el-row>
     </el-row>
     <el-row class="content">
@@ -17,7 +17,7 @@
         <i class="el-icon-paperclip"></i
         ><span> 微博名称：{{ userInfo.weibo }}</span>
       </el-row>
-      <el-row v-if="userInfo.qrCode">
+      <el-row v-if="userInfo.qrCode" @click.native="showQrCode">
         <i class="el-icon-chat-line-round"></i
         ><span> 点击获取客户微信二维码</span>
       </el-row>
@@ -26,6 +26,14 @@
         ><span> {{ userInfo.address }}</span>
       </el-row>
     </el-row>
+    <el-dialog :visible.sync="dialogVisible" width="70%">
+      <span
+        ><el-image :src="userInfo.qrCode" alt="" />
+        <el-row style="text-align:center;color:#c29b69"
+          >(长按可保存二维码)</el-row
+        ></span
+      >
+    </el-dialog>
   </div>
 </template>
 <script lang="ts">
@@ -34,8 +42,12 @@ import * as configApi from "@api/config";
 @Component
 export default class HomeIndex extends Vue {
   userInfo = {};
+  dialogVisible = false;
   created() {
     this.getUserInfo();
+  }
+  showQrCode() {
+    this.dialogVisible = true;
   }
   getUserInfo() {
     configApi.getUserInfo({}).then((res: any) => {

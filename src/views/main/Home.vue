@@ -9,7 +9,8 @@
           v-if="
             $route.fullPath === '/main/home/index' ||
               $route.fullPath === '/main/home/aboutUs' ||
-              $route.fullPath === '/main/home/category' ||
+              $route.fullPath === '/main/home/category/style' ||
+              $route.fullPath === '/main/home/category/price' ||
               $route.fullPath === '/main/home/connectUs'
           "
         ></i>

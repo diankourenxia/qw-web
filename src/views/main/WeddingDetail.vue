@@ -25,7 +25,11 @@
         <template v-if="index === 0">
           <el-row style="height:100%" class="first-page-container">
             <el-row style="height:20%;width:100%" class="logo">
-              <img src="@assets/images/base/case-logo.png" />
+              <el-image
+                fit="contain"
+                :src="userInfo && userInfo.logo"
+                style="margin-top:-15px"
+              />
             </el-row>
             <el-row style="height:45%">
               <transition
@@ -135,12 +139,23 @@ export default class WeddingList extends Vue {
       }
     }
   };
+  userInfo = {};
   computed() {}
   created() {
     let id = this.$route.params.id;
-    configApi.getWedding({ id }).then(res => {
-      this.weddingParam = res[0];
-      this.showArr = true;
+    configApi.getUserInfo({}).then((res: any) => {
+      this.userInfo = res[0];
+      console.log(this.userInfo);
+      configApi.getWedding({ id }).then(res => {
+        this.weddingParam = res[0];
+        this.showArr = true;
+      });
+    });
+  }
+  getUserInfo() {
+    configApi.getUserInfo({}).then((res: any) => {
+      this.userInfo = res[0];
+      console.log(this.userInfo);
     });
   }
   gotoList() {
