@@ -32,11 +32,20 @@ export default {
           }
         },
         {
-          path: "/main/home/weddingDetail",
+          path: "/main/home/weddingDetail/:id",
           name: "mainHomeWeddingDetail",
           component: () => import("@views/main/WeddingDetail.vue"),
           meta: {
             title: "案例详情",
+            ignoreLogin: true
+          }
+        },
+        {
+          path: "/main/home/connectUs",
+          name: "mainHomeConnectUs",
+          component: () => import("@views/main/connectUs.vue"),
+          meta: {
+            title: "联系我们",
             ignoreLogin: true
           }
         }

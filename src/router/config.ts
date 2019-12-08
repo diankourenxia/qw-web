@@ -18,7 +18,7 @@ export default {
           name: "configWedding",
           component: () => import("@views/config/wedding.vue"),
           meta: {
-            title: "快打单-测试",
+            title: "栖吾创意-婚礼案例管理",
             ignoreLogin: true
           }
         },
@@ -27,7 +27,7 @@ export default {
           name: "baseConfig",
           component: () => import("@views/config/BaseConfig.vue"),
           meta: {
-            title: "快打单-测试2",
+            title: "栖吾创意-基础信息",
             ignoreLogin: true
           }
         }
