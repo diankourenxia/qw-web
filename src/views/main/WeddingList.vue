@@ -47,7 +47,8 @@ export default class WeddingList extends Vue {
     box-shadow 2px 2px 4px 1px #d6d6d6
     .el-image
       height 100%
-      overflow, img
+      overflow hidden
+      img
         width 100%
     .page-pic
       width 100%
@@ -58,4 +59,5 @@ export default class WeddingList extends Vue {
       line-height 40px
       font-size 18px
       color #c29b69
+      background white
 </style>

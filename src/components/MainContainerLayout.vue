@@ -32,11 +32,22 @@ export default class MainContainerLayout extends Vue {}
 
 <style lang="stylus" scoped>
 .container
-  background-color #E4E9F2
+  // background-color #E4E9F2
   position absolute
   height 100vh
   right 0
   left 0
+  &:after
+    content ''
+    position fixed
+    z-index -1
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background url('../assets/images/base/bg.jpg') repeat-x
+    pointer-events none
+    -webkit-animation bg 20s linear infinite
   .header
     background-image url('../assets/images/base/bg_main_header.png')
     background-size contain
@@ -47,5 +58,10 @@ export default class MainContainerLayout extends Vue {}
     margin auto
     width 100%
     height 100%
-    background-color $color-background
+    // background-color $color-background
+@keyframes bg
+  00%
+    background-position 0 0
+  100%
+    background-position -640px 0
 </style>

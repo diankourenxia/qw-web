@@ -79,7 +79,7 @@
           </el-upload>
         </el-col>
       </el-form-item>
-      <el-form-item label="背景图" @click.native="chooseType('bgImg')">
+      <!-- <el-form-item label="背景图" @click.native="chooseType('bgImg')">
         <el-col :span="6">
           <el-upload
             class="avatar-uploader"
@@ -93,7 +93,8 @@
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-col> </el-form-item
-      ><br /><br />
+      ><br /> -->
+      <br />
       <el-form-item size="large">
         <el-button type="primary" @click="onSubmit">更新</el-button>
         <el-button>取消</el-button>

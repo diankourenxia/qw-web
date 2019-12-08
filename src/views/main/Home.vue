@@ -6,7 +6,12 @@
           class="menu-icon"
           :class="drawer ? '' : 'el-icon-menu'"
           @click="showMenu"
-          v-if="$route.fullPath === '/main/home/index'"
+          v-if="
+            $route.fullPath === '/main/home/index' ||
+              $route.fullPath === '/main/home/aboutUs' ||
+              $route.fullPath === '/main/home/category' ||
+              $route.fullPath === '/main/home/connectUs'
+          "
         ></i>
         <router-view></router-view>
         <el-drawer
@@ -66,12 +71,12 @@ export default class ConfigMore extends Vue {
         {
           icon: "el-icon-price-tag",
           label: "按价格",
-          path: "/main/home/category"
+          path: "/main/home/category/price"
         },
         {
           icon: "el-icon-view",
           label: "按主题",
-          path: "/main/home/category"
+          path: "/main/home/category/style"
         }
       ]
     },
@@ -100,7 +105,7 @@ export default class ConfigMore extends Vue {
 
 <style lang="stylus" scoped>
 .menu-icon
-  font-size 40px
+  font-size 32px
   position fixed
   top 20px
   right 20px

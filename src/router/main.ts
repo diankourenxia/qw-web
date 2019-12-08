@@ -48,6 +48,24 @@ export default {
             title: "联系我们",
             ignoreLogin: true
           }
+        },
+        {
+          path: "/main/home/aboutUs",
+          name: "mainHomeAboutUs",
+          component: () => import("@views/main/aboutUs.vue"),
+          meta: {
+            title: "关于我们",
+            ignoreLogin: true
+          }
+        },
+        {
+          path: "/main/home/category/:tyle",
+          name: "mainHomeCategory",
+          component: () => import("@views/main/category.vue"),
+          meta: {
+            title: "案例分类",
+            ignoreLogin: true
+          }
         }
       ]
     }
