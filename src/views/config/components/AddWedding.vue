@@ -75,10 +75,16 @@
                     class="avatar-uploader"
                     action="https://jsonplaceholder.typicode.com/posts/"
                     :show-file-list="false"
+                    :http-request="imgUploadFnPagePic"
                     :on-success="handleAvatarSuccess"
                     :before-upload="beforeAvatarUpload"
                   >
-                    <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+                    <img
+                      style="width:120px"
+                      v-if="getterDetailForm.pagePic"
+                      :src="getterDetailForm.pagePic"
+                      class="avatar"
+                    />
                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                   </el-upload>
                 </el-form-item>
@@ -272,6 +278,22 @@ export default class AddWedding extends Vue {
   }
   handleAvatarSuccess(res: any, file: any) {
     // this.imgUpload.src = res.data;
+  }
+  imgUploadFnPagePic(content: any) {
+    const formData = new FormData();
+    formData.append("file", content.file);
+    configApi
+      .uploadImg(formData)
+      .then((res: any) => {
+        // this.getIndex(content.file.uid);
+        // console.log(this.imgIndex);
+        //@ts-ignore
+        this.getterDetailForm.pagePic = res;
+        // this.$set(this.imgUpload, "src", res);
+      })
+      .catch((err: any) => {
+        this.$alert(err.msg);
+      });
   }
   imgUploadFn(content: any) {
     const formData = new FormData();

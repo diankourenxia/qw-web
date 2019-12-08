@@ -66,7 +66,7 @@ export default class ConfigMore extends Vue {
     },
     {
       icon: "el-icon-s-order",
-      label: "婚礼案例",
+      label: "案例",
       path: "/main/home/weddingList",
       children: [
         {
