@@ -22,6 +22,8 @@ export default class HomeIndex extends Vue {
   getUserInfo() {
     configApi.getUserInfo({}).then((res: any) => {
       this.userInfo = res[0];
+      this.loaded = true;
+
       sessionStorage.setItem("userInfo", JSON.stringify(this.userInfo));
     });
   }
