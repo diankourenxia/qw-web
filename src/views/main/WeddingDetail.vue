@@ -143,14 +143,15 @@ export default class WeddingList extends Vue {
   computed() {}
   created() {
     let id = this.$route.params.id;
-    configApi.getUserInfo({}).then((res: any) => {
-      this.userInfo = res[0];
-      console.log(this.userInfo);
-      configApi.getWedding({ id }).then(res => {
-        this.weddingParam = res[0];
-        this.showArr = true;
-      });
+    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "");
+    // configApi.getUserInfo({}).then((res: any) => {
+    //   this.userInfo = res[0];
+    //   console.log(this.userInfo);
+    configApi.getWedding({ id }).then(res => {
+      this.weddingParam = res[0];
+      this.showArr = true;
     });
+    // });
   }
   getUserInfo() {
     configApi.getUserInfo({}).then((res: any) => {

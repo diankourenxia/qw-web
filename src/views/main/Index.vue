@@ -12,12 +12,12 @@ export default class HomeIndex extends Vue {
   userInfo = {};
   loaded = false;
   created() {
-    this.getUserInfo();
+    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "");
+    this.loaded = true;
   }
   getUserInfo() {
     configApi.getUserInfo({}).then((res: any) => {
-      this.userInfo = res[0];
-      this.loaded = true;
+      return res[0];
     });
   }
 }

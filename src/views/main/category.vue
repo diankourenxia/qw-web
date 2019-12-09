@@ -43,7 +43,10 @@ export default class HomeIndex extends Vue {
   categoryList = [];
   type = "price";
   created() {
-    this.getUserInfo();
+    // this.getUserInfo();
+    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "");
+    this.loaded = true;
+
     this.handleQueryCategory();
   }
 

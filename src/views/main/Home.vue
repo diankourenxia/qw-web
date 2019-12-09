@@ -7,11 +7,8 @@
           :class="drawer ? '' : 'el-icon-menu'"
           @click="showMenu"
           v-if="
-            $route.fullPath === '/main/home/index' ||
-              $route.fullPath === '/main/home/aboutUs' ||
-              $route.fullPath === '/main/home/category/style' ||
-              $route.fullPath === '/main/home/category/price' ||
-              $route.fullPath === '/main/home/connectUs'
+            $route.fullPath !== '/main/home/weddingList' &&
+              $route.fullPath.indexOf('/main/home/weddingDetail') === -1
           "
         ></i>
         <router-view></router-view>
@@ -51,13 +48,14 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-
+import * as configApi from "@api/config";
 @Component
 export default class ConfigMore extends Vue {
   drawer = false;
   showMenu() {
     this.drawer = true;
   }
+  userInfo = {};
   menuList = [
     {
       icon: "el-icon-s-home",
@@ -95,6 +93,12 @@ export default class ConfigMore extends Vue {
   gotoUrl(url: string) {
     this.drawer = false;
     this.$router.push(url);
+  }
+  created() {
+    configApi.getUserInfo({}).then((res: any) => {
+      this.userInfo = res[0];
+      sessionStorage.setItem("userInfo", JSON.stringify(this.userInfo));
+    });
   }
   handleSelect(key: string, keyPath: string[]) {
     if (this.$route.path !== key) {

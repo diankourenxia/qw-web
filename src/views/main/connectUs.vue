@@ -44,7 +44,8 @@ export default class HomeIndex extends Vue {
   userInfo = {};
   dialogVisible = false;
   created() {
-    this.getUserInfo();
+    // this.getUserInfo();
+    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "");
   }
   showQrCode() {
     this.dialogVisible = true;

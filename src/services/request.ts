@@ -36,34 +36,6 @@ axios.interceptors.response.use(
       }
     }
     if (response.data.code !== "200") {
-      if (
-        response.data.code === "ul_530" &&
-        process.env.NODE_ENV === "production" &&
-        process.env.VUE_APP_EXTERNAL === "true"
-      ) {
-        if (!tokenWarning) {
-          tokenWarning = true;
-          MessageBox.alert("当前登录信息已过期", "登录过期", {
-            confirmButtonText: "刷新信息",
-            showClose: false,
-            type: "warning",
-            callback: () => {
-              tokenWarning = false;
-              window.location.href =
-                "https://s.kwaishop.com/oauth2/authorize?app_id=ks702843018153803530&response_type=code&scope=user_info,merchant_item,merchant_order,merchant_refund&redirect_uri=https://ksdd.kuaixe.com/ISV/accessToken";
-            }
-          });
-        }
-        return Promise.reject(response.data);
-      }
-
-      if (!Utils.isEmpty(response.data)) {
-        Message.error({
-          showClose: true,
-          duration: 2000,
-          message: response.data.msg || response.data.message
-        });
-      }
       return Promise.reject(response.data);
     }
     return response.data.data;
