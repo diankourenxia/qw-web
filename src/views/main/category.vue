@@ -45,8 +45,6 @@ export default class HomeIndex extends Vue {
   created() {
     // this.getUserInfo();
     this.userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "");
-    this.loaded = true;
-
     this.handleQueryCategory();
   }
 
@@ -89,7 +87,7 @@ export default class HomeIndex extends Vue {
       this.categoryParam = res[0];
       this.priceRange.dynamicTags = res[0].price.list;
       this.categoryTags.dynamicTags = res[0].style.list;
-      console.log(this.$route.params);
+      this.loaded = true;
       if (this.$route.params.type === "price") {
         //@ts-ignore
         this.categoryList = this.priceRange.dynamicTags;

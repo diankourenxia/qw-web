@@ -18,7 +18,7 @@ export default {
           name: "mainHomeIndex",
           component: () => import("@views/main/Index.vue"),
           meta: {
-            title: "首页",
+            title: "栖吾创意策划",
             ignoreLogin: true
           }
         },
@@ -27,7 +27,7 @@ export default {
           name: "mainHomeWeddingList",
           component: () => import("@views/main/WeddingList.vue"),
           meta: {
-            title: "案例列表",
+            title: "栖吾-案例列表",
             ignoreLogin: true
           }
         },
@@ -36,7 +36,7 @@ export default {
           name: "mainHomeWeddingDetail",
           component: () => import("@views/main/WeddingDetail.vue"),
           meta: {
-            title: "案例详情",
+            title: "栖吾-案例详情",
             ignoreLogin: true
           }
         },

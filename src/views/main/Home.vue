@@ -6,10 +6,7 @@
           class="menu-icon"
           :class="drawer ? '' : 'el-icon-menu'"
           @click="showMenu"
-          v-if="
-            $route.fullPath !== '/main/home/weddingList' &&
-              $route.fullPath.indexOf('/main/home/weddingDetail') === -1
-          "
+          v-if="$route.fullPath.indexOf('/main/home/weddingDetail') === -1"
         ></i>
         <router-view></router-view>
         <el-drawer
