@@ -1,5 +1,5 @@
 <template>
-  <div class="index-container">
+  <div class="index-container" v-if="loaded">
     <el-image :src="userInfo.logo" alt="" v-if="loaded" fit="contain" />
   </div>
 </template>
@@ -12,12 +12,17 @@ export default class HomeIndex extends Vue {
   userInfo = {};
   loaded = false;
   created() {
-    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "");
-    this.loaded = true;
+    if (JSON.parse(sessionStorage.getItem("userInfo") || "")) {
+      this.userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "");
+      this.loaded = true;
+    } else {
+      this.getUserInfo();
+    }
   }
   getUserInfo() {
     configApi.getUserInfo({}).then((res: any) => {
-      return res[0];
+      this.userInfo = res[0];
+      sessionStorage.setItem("userInfo", JSON.stringify(this.userInfo));
     });
   }
 }
