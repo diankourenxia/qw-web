@@ -7,7 +7,7 @@
       @click="gotoDetail(i._id)"
     >
       <el-row class="page-pic">
-        <el-image :src="i.pagePic" />
+        <el-image :src="i.pagePic" fit="cover" />
       </el-row>
       <el-row class="title">
         {{ i.title }}
