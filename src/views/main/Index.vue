@@ -12,7 +12,7 @@ export default class HomeIndex extends Vue {
   userInfo = {};
   loaded = false;
   created() {
-    if (JSON.parse(sessionStorage.getItem("userInfo") || "")) {
+    if (sessionStorage.getItem("userInfo")) {
       this.userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "");
       this.loaded = true;
     } else {
