@@ -43,8 +43,8 @@ export default class WeddingList extends Vue {
   .infinite-list-item
     height 270px
     width 100%
-    margin-top 20px
-    box-shadow 2px 2px 4px 1px #d6d6d6
+    margin 20px 0
+    box-shadow 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04)
     .el-image
       height 100%
       overflow hidden

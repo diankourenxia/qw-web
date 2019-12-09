@@ -19,7 +19,7 @@
       </el-row>
       <el-row v-if="userInfo.qrCode" @click.native="showQrCode">
         <i class="el-icon-chat-line-round"></i
-        ><span> 点击获取客户微信二维码</span>
+        ><span> 点击获取客服微信二维码</span>
       </el-row>
       <el-row>
         <i class="el-icon-office-building"></i
